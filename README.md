@@ -1,35 +1,29 @@
-[![Build Status](https://github.com/turahe/git-repo-manager/actions/workflows/test.yml/badge.svg)](https://github.com/turahe/git-repo-manager/actions/workflows/test.yml)
-[![Docs](https://img.shields.io/badge/docs-GitHub%20Pages-blue)](https://turahe.github.io/git-repo-manager/)
-[![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/downloads/)
-[![License](https://img.shields.io/github/license/turahe/git-repo-manager)](LICENSE)
-[![Coverage Status](https://img.shields.io/codecov/c/github/turahe/git-repo-manager?logo=codecov)](https://codecov.io/gh/turahe/git-repo-manager)
+[update-readmes]   Mode: rewrite — migrating to template structure...
+# git-repo-manager
 
-# GitLab & GitHub Repository Management Tool
+[![Built with Ona](https://ona.com/build-with-ona.svg)](https://app.ona.com/#https://github.com/Interested-Deving-1896/git-repo-manager)
 
-A modular, object-oriented CLI tool for managing GitLab and GitHub repositories and Composer dependencies using Click.
+<!-- AI:start:what-it-does -->
+_Description pending._
+<!-- AI:end:what-it-does -->
 
-## Features
+## Architecture
 
-- **Multi-Platform Support**: Manage repositories from both GitLab and GitHub
-- **Modular Architecture**: Clean separation of concerns with dedicated classes for different operations
-- **Object-Oriented Design**: Well-structured classes for configuration, API clients, repository management, and Composer operations
-- **CLI Interface**: Easy-to-use command-line interface powered by Click
-- **Concurrent Operations**: Parallel processing for faster repository cloning
-- **Flexible Configuration**: Support for environment variables and command-line options
-- **Composer Integration**: Automatic dependency updates for PHP projects
+<!-- AI:start:architecture -->
+_Architecture documentation pending._
+<!-- AI:end:architecture -->
 
-## Installation
+## Install
 
-1. Clone this repository or download the files
-2. Install dependencies:
+<!-- Add installation instructions here. This section is yours — the AI will not modify it. -->
 
 ```bash
-pip install -r requirements.txt
+git clone https://github.com/Interested-Deving-1896/git-repo-manager.git
+cd git-repo-manager
 ```
 
-3. Configure the application by editing `config.yml` (see Configuration section below)
-
 ## Usage
+
 
 ![git-repo-manager](docs/cli.svg)
 
@@ -113,6 +107,7 @@ python cli.py clone-groups \
 python cli.py update-composer --directory /path/to/projects
 
 ## Configuration
+
 
 The application uses a YAML configuration file for settings. The tool looks for configuration in this order:
 1. Current directory (`config.yml`)
@@ -208,219 +203,46 @@ export REPO_DIR="/path/to/repositories"
 export MAX_CONCURRENT_DOWNLOADS="10"
 ```
 
-## Project Structure
+## CI
+
+<!-- AI:start:ci -->
+_CI documentation pending._
+<!-- AI:end:ci -->
+
+## Mirror chain
+
+<!-- AI:start:mirror-chain -->
+This repo is maintained in [`Interested-Deving-1896/git-repo-manager`](https://github.com/Interested-Deving-1896/git-repo-manager) and mirrored through:
 
 ```
-├── cli.py                 # Main CLI application
-├── config.yml             # Configuration file
-├── requirements.txt       # Python dependencies
-├── setup.py              # Installation script
-├── README.md             # This file
-├── src/                  # Source code package
-│   ├── __init__.py
-│   ├── config.py         # Configuration classes
-│   ├── gitlab_client.py  # GitLab API client
-│   ├── github_client.py  # GitHub API client
-│   ├── repository_manager.py  # Git operations
-│   ├── composer_manager.py    # Composer operations
-│   └── services.py       # Service orchestration
-├── clone.py              # Original user repository script
-├── clone-group.py        # Original group repository script
-├── composer_updater.py   # Original Composer script
-├── test_github.py        # GitHub functionality test script
-└── test_output_dir.py    # Output directory feature test script
+Interested-Deving-1896/git-repo-manager  ──►  OpenOS-Project-OSP/git-repo-manager  ──►  OpenOS-Project-Ecosystem-OOC/git-repo-manager
 ```
 
-## Architecture
+Changes flow downstream automatically via the hourly mirror chain in
+[`fork-sync-all`](https://github.com/Interested-Deving-1896/fork-sync-all).
+Direct commits to OSP or OOC are detected and opened as PRs back to `Interested-Deving-1896`.
+<!-- AI:end:mirror-chain -->
 
-### Configuration (`src/config.py`)
-- `GitLabConfig`: GitLab API configuration
-- `RepositoryConfig`: Repository operations configuration
-- `GroupConfig`: Group-specific configuration
+## Contributors
 
-### GitLab Client (`src/gitlab_client.py`)
-- `GitLabClient`: Handles all GitLab API interactions
-- Methods for fetching user and group projects
+<!-- AI:start:contributors -->
+_Contributors pending._
+<!-- AI:end:contributors -->
 
-### GitHub Client (`src/github_client.py`)
-- `GitHubClient`: Handles all GitHub API interactions
-- Methods for fetching user and organization repositories
+## Origins
 
-### Repository Manager (`src/repository_manager.py`)
-- `RepositoryManager`: Manages Git operations
-- Concurrent cloning and updating of repositories
-- Branch management for group repositories
+<!-- AI:start:origins -->
+_Original project — no upstream fork._
+<!-- AI:end:origins -->
 
-### Composer Manager (`src/composer_manager.py`)
-- `ComposerManager`: Handles Composer operations
-- Automatic detection of composer commands
-- Recursive dependency updates
+## Resources
 
-### Services (`src/services.py`)
-- `UserRepositoryService`: Orchestrates GitLab user repository operations
-- `GroupRepositoryService`: Orchestrates GitLab group repository operations
-- `GitHubUserService`: Orchestrates GitHub user repository operations
-- `GitHubOrganizationService`: Orchestrates GitHub organization repository operations
-- `ComposerService`: Orchestrates Composer operations
-
-## Configuration
-
-### GitLab Token
-
-You need a GitLab Personal Access Token with appropriate permissions:
-- `read_api` for reading project information
-- `read_repository` for cloning repositories
-
-### GitHub Token
-
-You need a GitHub Personal Access Token with appropriate permissions:
-- `repo` for accessing private repositories
-- `public_repo` for accessing public repositories only
-
-### Group IDs
-
-The tool reads group IDs from `config.yml`. You can:
-1. Modify the `config.yml` file directly to add/remove group IDs
-2. Use command-line options to override group IDs: `--group-ids 123456 789012`
-3. Set environment variables to override settings
-
-## Error Handling
-
-The tool includes comprehensive error handling for:
-- Network connectivity issues
-- Authentication failures
-- Git command errors
-- Composer command errors
-- File system operations
-
-## Performance
-
-- **Concurrent Downloads**: Configurable number of parallel workers (default: 5)
-- **Efficient API Usage**: Proper pagination handling for large project lists
-- **Smart Repository Management**: Only clones new repositories, updates existing ones
-
-## GitHub Integration
-
-This tool now supports both GitLab and GitHub repositories. The GitHub integration provides:
-
-### Features
-- **User Repositories**: Clone all repositories from a specific GitHub user
-- **Organization Repositories**: Clone all repositories from a GitHub organization
-- **Authenticated Access**: Use your GitHub token to access private repositories
-- **Concurrent Cloning**: Parallel processing for faster downloads
-- **Smart Updates**: Only clones new repositories, updates existing ones
-
-### Setup
-1. Create a GitHub Personal Access Token with `repo` permissions
-2. Configure the token in your `config.yml` or set `GITHUB_ACCESS_TOKEN` environment variable
-3. Use the GitHub commands to clone repositories
-
-### Commands
-```bash
-# Clone repositories from a GitHub user
-python cli.py clone-github-user --username username
-
-# Clone repositories from authenticated user
-python cli.py clone-github-user
-
-# Clone repositories from a GitHub organization
-python cli.py clone-github-org organization-name
-```
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
-
-### Development Setup
-
-```bash
-# Install development dependencies
-pip install -r requirements.txt
-
-# Run all tests
-make test
-
-# Run unit tests only
-make test-unit
-
-# Run integration tests only
-make test-integration
-
-# Run linting
-make lint
-
-# Run type checking
-make type-check
-
-# Generate coverage report
-make coverage
-
-# Or use the test runner script
-python run_tests.py
-```
-
-### Testing
-
-The project includes comprehensive unit tests for all components:
-
-- **Configuration Tests**: Test all configuration classes and managers
-- **GitLab Client Tests**: Test GitLab API interactions
-- **GitHub Client Tests**: Test GitHub API interactions  
-- **Service Tests**: Test service orchestration classes
-- **CLI Tests**: Test command-line interface commands
-
-Run tests with:
-```bash
-# Run all tests
-pytest
-
-# Run with coverage
-pytest --cov=src --cov-report=html
-
-# Run specific test file
-pytest tests/test_config.py
-
-# Run specific test class
-pytest tests/test_config.py::TestGitLabConfig
-```
-
-## CI/CD
-
-This project uses GitHub Actions for continuous integration and deployment:
-
-### Workflows
-
-- **Test**: Runs on every push and PR
-  - Python 3.8-3.11 compatibility
-  - Linting with flake8
-  - Type checking with mypy
-  - Unit tests with pytest
-  - Code coverage reporting
-
-- **Build**: Creates packages for all platforms
-  - Windows EXE (PyInstaller)
-  - DEB package (Debian/Ubuntu)
-  - RPM package (Red Hat/CentOS/Fedora)
-
-- **Security**: Weekly security scanning
-  - Safety (vulnerability scanner)
-  - Bandit (security linter)
-  - Results uploaded to GitHub Code Scanning
-
-- **Documentation**: Generates and validates docs
-  - API documentation
-  - Link validation
-  - Documentation artifacts
-
-- **Release**: Automated releases
-  - Triggers on tag creation
-  - Builds all package types
-  - Uploads to GitHub Releases
+<!-- AI:start:resources -->
+_No additional resource files found._
+<!-- AI:end:resources -->
 
 ## License
 
-This project is open source and available under the MIT License. 
+<!-- AI:start:license -->
+<!-- License not detected — add a LICENSE file to this repo. -->
+<!-- AI:end:license -->
